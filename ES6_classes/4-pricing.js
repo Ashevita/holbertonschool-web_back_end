@@ -1,12 +1,17 @@
-import Currency from './3-currency.js';
+import Currency from './3-currency';
 
 export default class Pricing {
   constructor(amount, currency) {
-    this.amount = amount;
-    this.currency = currency;
+    if (typeof amount !== 'number') {
+      throw new TypeError('Amount must be a number');
+    }
+    if (!(currency instanceof Currency)) {
+      throw new TypeError('Currency must be an instance of Currency');
+    }
+    this._amount = amount;
+    this._currency = currency;
   }
 
-  // Getter et setter pour _amount
   get amount() {
     return this._amount;
   }
@@ -18,7 +23,6 @@ export default class Pricing {
     this._amount = value;
   }
 
-  // Getter et setter pour _currency
   get currency() {
     return this._currency;
   }
@@ -30,15 +34,13 @@ export default class Pricing {
     this._currency = value;
   }
 
-  // Méthode displayFullPrice
   displayFullPrice() {
-    return `${this.amount} ${this.currency.name} (${this.currency.code})`;
+    return `${this._amount} ${this._currency.name} (${this._currency.code})`;
   }
 
-  // Méthode statique convertPrice
   static convertPrice(amount, conversionRate) {
     if (typeof amount !== 'number' || typeof conversionRate !== 'number') {
-      throw new TypeError('Both amount and conversionRate must be numbers');
+      throw new TypeError('Amount and conversion rate must be numbers');
     }
     return amount * conversionRate;
   }
