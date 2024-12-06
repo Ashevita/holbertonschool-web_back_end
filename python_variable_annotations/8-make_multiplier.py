@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
-from typing import Callable
+""" this module contains a function called make_multiplier """
+from typing import List, Union, Tuple, Callable
+
 
 def make_multiplier(multiplier: float) -> Callable[[float], float]:
-    """Retourne une fonction qui multiplie un flottant par le multiplicateur donné."""
-    def multiplier_function(value: float) -> float:
-        return value * multiplier
-    return multiplier_function
+    """ takes a float multiplier as argument and
+    returns a function that multiplies a float by multiplier """
+    def f(x: float) -> float:
+        """ doing the math """
+        return x * multiplier
+    return f

@@ -1,6 +1,12 @@
 #!/usr/bin/env python3
+""" this module contains a function called sum_list """
 from typing import List
 
+
 def sum_list(input_list: List[float]) -> float:
-    """Retourne la somme des éléments d'une liste de flottants."""
-    return sum(input_list)
+    """ takes a list input_list of floats as argument and
+    returns their sum as a float. """
+    result: float = 0.0
+    for i in input_list:
+        result += i
+    return result
