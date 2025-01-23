@@ -20,17 +20,17 @@ function countStudents(path) {
 
     for (const line of lines) {
       const studentData = line.split(',');
-      if (studentData.length < 4) continue; // Ignore les lignes mal formatées
+      if (studentData.length >= 4) { // Ignore les lignes mal formatées
+        const firstName = studentData[0].trim();
+        const field = studentData[3].trim();
 
-      const firstName = studentData[0].trim();
-      const field = studentData[3].trim();
+        if (!fields[field]) {
+          fields[field] = [];
+        }
 
-      if (!fields[field]) {
-        fields[field] = [];
+        fields[field].push(firstName);
+        totalStudents = +1;
       }
-
-      fields[field].push(firstName);
-      totalStudents++;
     }
 
     // Affiche le nombre total d'étudiants
@@ -39,7 +39,7 @@ function countStudents(path) {
     // Affiche le nombre d'étudiants par domaine
     for (const [field, students] of Object.entries(fields)) {
       console.log(
-        `Number of students in ${field}: ${students.length}. List: ${students.join(', ')}`
+        `Number of students in ${field}: ${students.length}. List: ${students.join(', ')}`,
       );
     }
   } catch (error) {
