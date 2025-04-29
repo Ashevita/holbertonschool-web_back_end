@@ -2,7 +2,7 @@
 """this module contains a function  coroutine"""
 import asyncio
 import random
-
+import typing
 
 async def async_generator(): -> typing.Generator[float, None, None]:
     """Coroutine qui génère 10 nombres aléatoires entre 0 et 10,
